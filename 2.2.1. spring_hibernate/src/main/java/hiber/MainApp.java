@@ -16,15 +16,16 @@ public class MainApp {
 
       UserService userService = context.getBean(UserService.class);
 
-      Car car1 = new Car ("bmw",5);
-      Car car2 = new Car ("mazda",626);
-      Car car3 = new Car ("renault",19);
-      Car car4 = new Car ("zaz",10);
 
-      userService.add(new User("User1", "Lastname1", "user1@mail.ru"), car1);
-      userService.add(new User("User2", "Lastname2", "user2@mail.ru"), car2);
-      userService.add(new User("User3", "Lastname3", "user3@mail.ru"),car3);
-      userService.add(new User("User4", "Lastname4", "user4@mail.ru"),car4);
+
+      userService.add(new User("User1", "Lastname1", "user1@mail.ru",
+              new Car ("bmw",5)));
+      userService.add(new User("User2", "Lastname2", "user2@mail.ru",
+              new Car ("renault",19)));
+      userService.add(new User("User3", "Lastname3", "user3@mail.ru",
+              new Car ("mazda",626)));
+      userService.add(new User("User4", "Lastname4", "user4@mail.ru",
+              new Car ("zaz",10)));
 
 
 
@@ -38,9 +39,11 @@ public class MainApp {
           System.out.println("Car = " + user.getCar());
          System.out.println();
       }
-      User userWithCar = userService.getUserByCar(car3);
+
+      Car car = new Car ("zaz",10);
+      User userWithCar = userService.getUserByCar(car);
       System.out.println();
-      System.out.println("Car " + car3 + " belongs User: " + userWithCar);
+      System.out.println("Car " + car + " belongs User: " + userWithCar);
 
       context.close();
    }
